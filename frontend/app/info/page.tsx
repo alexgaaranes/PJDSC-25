@@ -1,81 +1,124 @@
-'use client';
+"use client";
 
-import { useBarangays, useShelters } from '@/hooks/useApi';
-import NavigationBar from '@/components/NavigationBar';
-import { NavigationTab } from '@/lib/types';
+import React from "react";
+import { Lightbulb, Shield, AlertTriangle } from "lucide-react";
+import NavigationBar from "@/components/NavigationBar";
+import { NavigationTab } from "@/lib/types";
 
 const navigationTabs: NavigationTab[] = [
-  { id: 'info', icon: 'i', label: 'Info' },
-  { id: 'home', icon: 'home', label: 'Home' },
-  { id: 'alerts', icon: 'bell', label: 'Alerts' },
+  { id: "info", icon: "i", label: "Info" },
+  { id: "home", icon: "home", label: "Home" },
+  { id: "alerts", icon: "bell", label: "Alerts" },
 ];
 
 export default function InfoPage() {
-  const { barangays, loading: barangaysLoading } = useBarangays();
-  const { shelters, loading: sheltersLoading } = useShelters();
+  const activeDevices = "1,248";
 
-  const handleTabChange = (tabId: string) => {
-    if (tabId === 'home') {
-      window.location.href = '/';
-    } else if (tabId === 'alerts') {
-      window.location.href = '/alerts';
+  const hotlines = [
+    { title: "Emergency (Police/Fire/Ambulance)", number: "911" },
+    { title: "Philippine Red Cross", number: "+63 2 8791 2300" },
+    { title: "NDRRMC Hotline", number: "+63 2 8724 6030" },
+    { title: "Local Emergency Hotline (Municipal)", number: "0966-000-0000" },
+  ];
+
+  const tips = [
+    "Move to a safe location before calling for help.",
+    "Follow evacuation orders and go to safe centers.",
+    "Keep essentials ready — water, phone, flashlight, first aid.",
+  ];
+
+  const icons = [AlertTriangle, Shield, Lightbulb];
+
+  function handleTabChange(tabId: string): void {
+    const routes: Record<string, string> = {
+      home: "/",
+      alerts: "/alerts",
+      info: "/info",
+    };
+
+    const target = routes[tabId] ?? "/";
+    if (typeof window !== "undefined" && window.location.pathname !== target) {
+      window.location.href = target;
     }
-  };
+  }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <div className="px-4 py-4 pb-20">
-        <h1 className="text-2xl font-bold mb-6">System Information</h1>
-        
-        <div className="space-y-6">
-          <div>
-            <h2 className="text-xl font-semibold mb-3">Barangays ({barangays.length})</h2>
-            {barangaysLoading ? (
-              <p className="text-gray-400">Loading barangays...</p>
-            ) : (
-              <div className="space-y-2">
-                {barangays.map((barangay) => (
-                  <div key={barangay.id} className="bg-gray-800 rounded-lg p-3">
-                    <h3 className="font-medium">{barangay.name}</h3>
-                    <p className="text-sm text-gray-400">
-                      {barangay.municipality}, {barangay.province}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+    <main className="min-h-screen px-5 pb-20 pt-6 bg-[#071122] text-white">
+      <div className="max-w-2xl mx-auto">
+        {/* Header */}
+        <header className="mb-6">
+          <h1 className="text-2xl font-semibold text-white">SAGIP Info</h1>
+          <p className="text-sm text-gray-400">
+            Quick access to device stats and emergency hotlines.
+          </p>
+        </header>
 
-          <div>
-            <h2 className="text-xl font-semibold mb-3">Shelters ({shelters.length})</h2>
-            {sheltersLoading ? (
-              <p className="text-gray-400">Loading shelters...</p>
-            ) : (
-              <div className="space-y-2">
-                {shelters.map((shelter) => (
-                  <div key={shelter.id} className="bg-gray-800 rounded-lg p-3">
-                    <h3 className="font-medium">{shelter.name}</h3>
-                    {shelter.address && (
-                      <p className="text-sm text-gray-400">{shelter.address}</p>
-                    )}
-                    {shelter.capacity && (
-                      <p className="text-sm text-gray-400">Capacity: {shelter.capacity}</p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
+        {/* Active Devices */}
+        <section className="bg-[#0E1A33] border border-[#1B2A4A] rounded-xl p-4 mb-6 shadow-md">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-gray-300">Active Devices (24h)</span>
+            <span className="text-xl font-semibold text-[#22C55E]">
+              {activeDevices}
+            </span>
           </div>
-        </div>
+        </section>
+
+        {/* Hotlines */}
+        <section className="mb-8">
+          <h2 className="text-lg font-semibold mb-3 text-white">Hotlines</h2>
+          <div className="space-y-3">
+            {hotlines.map((h) => (
+              <div
+                key={h.number}
+                className="flex items-center justify-between p-4 bg-[#0E1A33] border border-[#1B2A4A] rounded-lg shadow-sm hover:bg-[#13254A] transition-all"
+              >
+                <span className="text-sm text-gray-200">{h.title}</span>
+                <a
+                  href={`tel:${h.number.replace(/\s+/g, "")}`}
+                  className="text-[#FF7A00] text-sm font-medium hover:underline"
+                >
+                  {h.number}
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Safety Tips */}
+        <section className="mb-10">
+          <h3 className="text-lg font-semibold mb-3 text-white">
+            Quick Safety Tips
+          </h3>
+          <div className="space-y-5">
+            {tips.map((t, i) => {
+              const Icon = icons[i % icons.length];
+              return (
+                <div key={i} className="relative flex items-start space-x-3">
+                  <div className="p-1.5 rounded-md bg-[#13254A]">
+                    <Icon
+                      className="text-[#FF7A00] mt-0.5"
+                      size={18}
+                      strokeWidth={2.2}
+                    />
+                  </div>
+                  <p className="text-sm text-gray-300 leading-snug">
+                    {t}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </section>
       </div>
 
+      {/* Navigation Bar */}
       <div className="fixed bottom-0 left-0 right-0">
-        <NavigationBar 
+        <NavigationBar
           tabs={navigationTabs}
           activeTab="info"
           onTabChange={handleTabChange}
         />
       </div>
-    </div>
+    </main>
   );
 }

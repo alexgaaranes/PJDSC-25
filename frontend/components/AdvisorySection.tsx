@@ -1,5 +1,5 @@
-import { AdvisoryGroup } from '@/lib/types';
-import AdvisoryCard from './AdvisoryCard';
+import { AdvisoryGroup } from "@/lib/types";
+import AdvisoryCard from "./AdvisoryCard";
 
 interface AdvisorySectionProps {
   group: AdvisoryGroup;
@@ -8,7 +8,9 @@ interface AdvisorySectionProps {
 export default function AdvisorySection({ group }: AdvisorySectionProps) {
   return (
     <div className="mb-6">
-      <h2 className="text-white text-xl font-semibold mb-4">{group.date}</h2>
+      <h2 className="text-white text-lg font-semibold mb-3">
+        {group.date}
+      </h2>
       <div className="space-y-3">
         {group.advisories.map((advisory) => (
           <AdvisoryCard key={advisory.id} advisory={advisory} />
