@@ -24,3 +24,14 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* hide any red notification dot/badge on bell components */
+.notification-bell .badge,
+.notification-bell .dot,
+.bell-badge,
+.bell .badge,
+.badge,
+.notification-dot,
+.unread-dot {
+    display: none !important;
+}
