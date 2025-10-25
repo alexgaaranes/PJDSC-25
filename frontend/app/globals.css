@@ -35,3 +35,16 @@ body {
 .unread-dot {
     display: none !important;
 }
+
+.glass-card {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+@media (prefers-color-scheme: dark) {
+  .glass-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.03);
+  }
+}

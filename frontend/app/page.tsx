@@ -106,9 +106,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-[#071122] text-white">
       {/* Status Bar */}
-      <div className="bg-gray-900 px-4 py-2">
+      <div className="bg-[#071122] px-4 py-2">
         <div className="flex justify-between items-center">
           <span className="text-white text-sm">{currentTime}</span>
           <div className="flex items-center space-x-2">
