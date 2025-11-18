@@ -170,7 +170,7 @@ export default function MapComponent({ hazards, evacuationCenters, selectedLayer
 
     // Fit map to show all markers
     if (hazards.length > 0 || evacuationCenters.length > 0) {
-      const group = new L.featureGroup();
+      const group = L.featureGroup();
       if (markersRef.current) {
         markersRef.current.eachLayer((layer) => {
           // Check if layer is a layerGroup and extract its layers
