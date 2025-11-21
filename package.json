@@ -1,0 +1,13 @@
+{
+  "name": "pjdsc-project",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "install:all": "npm install",
+    "start:frontend": "npm start -w apps/frontend",
+    "start:backend": "npm start -w apps/backend"
+  }
+}

@@ -12,17 +12,13 @@ export default function InstallPage() {
   const [installed, setInstalled] = useState(false);
 
   useEffect(() => {
-    const onBeforeInstall = (e: BeforeInstallPromptEvent) => {
+    const handler = (e: any) => {
       e.preventDefault();
       setPromptEvent(e);
     };
-    const onInstalled = () => setInstalled(true);
-    window.addEventListener("beforeinstallprompt", onBeforeInstall);
-    window.addEventListener("appinstalled", onInstalled);
-    return () => {
-      window.removeEventListener("beforeinstallprompt", onBeforeInstall);
-      window.removeEventListener("appinstalled", onInstalled);
-    };
+    // cast string to any to satisfy TS
+    (window as any).addEventListener('beforeinstallprompt', handler);
+    return () => (window as any).removeEventListener('beforeinstallprompt', handler);
   }, []);
 
   const handleInstall = async () => {
@@ -48,7 +44,7 @@ export default function InstallPage() {
       </button>
       {!promptEvent && !installed && (
         <p className="text-sm text-gray-600 mt-3">
-          Tip: Open this site in Chrome/Edge on Android to see the install
+          PLEASE: Open this site in Chrome/Edge on Android to see the install
           prompt.
         </p>
       )}
