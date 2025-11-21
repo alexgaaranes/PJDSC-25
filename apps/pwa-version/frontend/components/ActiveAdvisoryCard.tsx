@@ -1,4 +1,4 @@
-import { TriangleAlert } from 'lucide-react';
+import { CloudRain, Wind, CloudLightning } from 'lucide-react';
 
 interface ActiveAdvisoryProps {
     title: string;
@@ -6,25 +6,42 @@ interface ActiveAdvisoryProps {
     level: number;
 }
 
-export default function ActiveAdvisoryCard({ title, issuedAt }: ActiveAdvisoryProps) {
+export default function ActiveAdvisoryCard({ title, issuedAt, level }: ActiveAdvisoryProps) {
     return (
-        <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#FF5F1F] to-[#D9381E] p-6 text-white shadow-lg shadow-orange-900/20">
-            {/* Background Icon */}
-            <TriangleAlert className="absolute -right-4 -top-4 w-40 h-40 text-white/10 rotate-12" />
+        <div className="status-card-gradient rounded-[32px] p-6 text-white relative overflow-hidden shadow-lg shadow-red-900/20">
+            {/* Background glow effect */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
 
             <div className="relative z-10">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[10px] font-bold tracking-wider mb-4">
-                    <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
-                    ACTIVE ADVISORY
+                <div className="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold tracking-wider mb-4">
+                    CURRENT STATUS
                 </div>
 
-                <h2 className="text-3xl font-black leading-tight mb-2 tracking-tight">
-                    {title}
-                </h2>
+                <div className="flex justify-between items-start">
+                    <div>
+                        <h2 className="text-4xl font-black leading-tight mb-1">SIGNAL</h2>
+                        <h2 className="text-4xl font-black leading-tight mb-6">NO. {level}</h2>
+                    </div>
 
-                <p className="text-white/90 text-xs font-medium font-mono opacity-80">
-                    Issued: {issuedAt}
+                    <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-yellow-400">
+                        <CloudLightning className="w-6 h-6" />
+                    </div>
+                </div>
+
+                <p className="text-white/90 text-sm leading-relaxed mb-8 max-w-[90%]">
+                    Tropical Storm &quot;Ignis&quot; approaching. Heavy rainfall expected.
                 </p>
+
+                <div className="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div className="flex items-center gap-2">
+                        <Wind className="w-5 h-5 text-white/70" />
+                        <span className="font-semibold text-sm">65 km/h Winds</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <CloudRain className="w-5 h-5 text-blue-300" />
+                        <span className="font-semibold text-sm">Heavy Rain</span>
+                    </div>
+                </div>
             </div>
         </div>
     );

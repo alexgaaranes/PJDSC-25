@@ -29,7 +29,7 @@ export default function StatusCard() {
                 <div className="flex items-center gap-6 pt-6 border-t border-white/10">
                     <div className="flex items-center gap-2">
                         <Wind className="w-5 h-5 text-white/70" />
-                        <span className="font-semibold text-sm">65 km/h Winds</span>
+                        <span className="font-semibold text-sm">90 km/h Winds</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <CloudRain className="w-5 h-5 text-blue-300" />
