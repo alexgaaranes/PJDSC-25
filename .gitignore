@@ -23,8 +23,6 @@
 # 3. Local Environment & Config
 # ------------------------------------
 # Environment variables and secrets
-.env
-.env.local
 .env.*.local
 .DS_STORE
 
@@ -46,7 +44,7 @@ pnpm-debug.log*
 Thumbs.db
 
 # Editor directories and files
-.vscode/
 .idea/
 *.sublime-project
 *.sublime-workspace
+config.bat
