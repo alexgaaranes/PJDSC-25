@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "install:all": "npm install",
-    "start:frontend": "npm start -w apps/frontend",
-    "start:backend": "npm start -w apps/backend"
+    "start:frontend": "node init && npm start -w apps/frontend",
+    "start:backend": "node init && npm start -w apps/backend"
   }
 }
