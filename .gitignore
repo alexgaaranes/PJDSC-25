@@ -23,8 +23,6 @@
 # 3. Local Environment & Config
 # ------------------------------------
 # Environment variables and secrets
-.env
-.env.local
 .env.*.local
 .DS_STORE
 
@@ -50,3 +48,4 @@ Thumbs.db
 .idea/
 *.sublime-project
 *.sublime-workspace
+config.bat

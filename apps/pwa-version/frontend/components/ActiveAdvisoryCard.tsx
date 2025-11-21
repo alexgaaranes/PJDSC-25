@@ -8,7 +8,7 @@ interface ActiveAdvisoryProps {
 
 export default function ActiveAdvisoryCard({ title, issuedAt, level }: ActiveAdvisoryProps) {
     return (
-        <div className="status-card-gradient rounded-[32px] p-6 text-white relative overflow-hidden shadow-lg shadow-red-900/20">
+        <div className="bg-gradient-to-br from-[#FF5F1F] to-[#0F0500] rounded-[32px] p-6 text-white relative overflow-hidden shadow-lg shadow-orange-900/20">
             {/* Background glow effect */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
 
